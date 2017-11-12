@@ -1,0 +1,148 @@
+{% extends "_base.twig" %}
+
+{% block main %}
+    <div class="master-bgImage">
+        <main class="master-head" id="content">
+            <div class="container">
+                <i class="material-icons super-icon">{{ _generic.icon }}</i>
+
+                <h1>{{ _generic.title }}</h1>
+
+                <p>Apollo helps you bootstrapping your next web service,<br> handles your users and payments.</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="container">
+        <div class="teaser">
+            <h2>Up and running in a few minutes.</h2>
+
+            <p>Configure Apollo and use it for your next project, now - it gives you instant user registration, login
+                and payment processing.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 m-b-3">
+                <h4>Not yet ready?</h4>
+
+                <p>Even when your service or product is not ready yet, you can make use of apollo: you can collect
+                    e-mail addresses of interested users so you can measure interest and contact the users when you are
+                    ready.</p>
+            </div>
+            <div class="col-sm-6 m-b-3">
+                <h4>Quick onboarding for users</h4>
+
+                <p>Apollo enables users to login via the most available oAuth providers: Google, Facebook and -
+                    especially interesting for tech people: Github.</p>
+
+                <p>The classic login method "email" is of course available as well.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 m-b-3">
+                <img src="/assets/img/sass.png" alt="Sass support" class="img-fluid">
+                <h4>Single sales</h4>
+
+                <p>If you want to offer one-time purchases to sell software for example, you can use
+                preconfigured widgets</p>
+            </div>
+            <div class="col-sm-4 m-b-3">
+                <img src="/assets/img/devices.png" alt="Responsive across devices" class="img-fluid">
+                <h4>One framework, every device.</h4>
+
+                <p>Bootstrap easily and efficiently scales your websites and applications with a single code base,
+                    from
+                    phones to tablets to desktops with CSS media queries.</p>
+            </div>
+            <div class="col-sm-4 m-b-3">
+                <img src="/assets/img/components.png" alt="Components" class="img-fluid">
+                <h4>Full of features</h4>
+
+                <p>With Bootstrap, you get extensive and beautiful documentation for common HTML elements, dozens of
+                    custom HTML and CSS components, and awesome jQuery plugins.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bd-featurette">
+        <div class="container">
+            <h2 class="bd-featurette-title">Designed for everyone, everywhere.</h2>
+
+            <p class="lead">Bootstrap makes front-end web development faster and easier. It's made for folks of all
+                skill
+                levels, devices of all shapes, and projects of all sizes.</p>
+
+
+            <hr class="half-rule m-t-0">
+
+            <p><strong>Bootstrap is open source!</strong> It's hosted, developed, and maintained on GitHub by folks like
+                you.</p>
+            <a href="https://github.com/twbs/bootstrap" class="btn btn-bs btn-outline">View the GitHub project</a>
+        </div>
+    </div>
+
+    <div class="bd-featurette">
+        <div class="container">
+            <h2 class="bd-featurette-title">Official Bootstrap Themes.</h2>
+
+            <p class="lead">
+                Take Bootstrap to the next level with official premium themes. Each theme is its own toolkit featuring
+                all
+                of Bootstrap, brand new components and plugins, full docs, build tools, and more.
+            </p>
+
+            <p class="lead">
+                <a href="http://themes.getbootstrap.com" class="btn btn-bs btn-outline">Browse themes</a>
+            </p>
+
+            <img class="img-fluid m-x-auto" src="/assets/img/bs-themes.png" alt="Bootstrap Themes" width="1024"
+                 height="388">
+        </div>
+    </div>
+
+    <div class="bd-featurette">
+        <div class="container">
+            <h2 class="bd-featurette-title">Built with Bootstrap.</h2>
+
+            <p class="lead">Millions of amazing sites across the web are being built with Bootstrap. Get started on your
+                own
+                with our growing <a href="../examples">collection of examples</a> or by exploring some of our favorites.
+            </p>
+
+            <div class="row bd-featured-sites">
+
+                <div class="col-xs-6 col-sm-3">
+                    <a href="http://expo.getbootstrap.com/2014/10/29/lyft/" target="_blank" title="Lyft">
+                        <img src="/assets/img/expo-lyft.jpg" alt="Lyft" class="img-fluid">
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-sm-3">
+                    <a href="http://expo.getbootstrap.com/2014/09/30/vogue/" target="_blank" title="Vogue">
+                        <img src="/assets/img/expo-vogue.jpg" alt="Vogue" class="img-fluid">
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-sm-3">
+                    <a href="http://expo.getbootstrap.com/2014/03/13/riot-design/" target="_blank" title="Riot Design">
+                        <img src="/assets/img/expo-riot.jpg" alt="Riot Design" class="img-fluid">
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-sm-3">
+                    <a href="http://expo.getbootstrap.com/2014/02/12/newsweek/" target="_blank" title="Newsweek">
+                        <img src="/assets/img/expo-newsweek.jpg" alt="Newsweek" class="img-fluid">
+                    </a>
+                </div>
+
+            </div>
+
+            <hr class="half-rule">
+
+            <p>We showcase dozens of inspiring projects built with Bootstrap on the Bootstrap Expo.</p>
+            <a href="http://expo.getbootstrap.com" class="btn btn-bs btn-outline">Explore the Expo</a>
+        </div>
+    </div>
+{% endblock %}

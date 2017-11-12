@@ -1,0 +1,22 @@
+{% extends "_base-empty.twig" %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-md-8" style="margin: 50px auto; float: none;">
+                <div class="card">
+                    <div class="card-body" style="padding: 20px;">
+                        <h4 class="card-title">Nearly done</h4>
+                        <p class="card-text">
+                            Thanks for joining us, {{ user.firstName }}!<br />
+                            We've sent an email to <strong>{{ user.mail }}</strong> - please click the activation link inside it
+                            to finish your registration.
+                        </p>
+
+                    </div>
+                </div>
+                <a href="/">Back to the homepage</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

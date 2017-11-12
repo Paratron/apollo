@@ -1,0 +1,18 @@
+{
+  "name": "apollo",
+  "version": "1.0.0",
+  "description": "A boilerplate for web projects with user accounts & payment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass src/lib/scss/apollo.scss | uglifycss > src/lib/css/apollo.css",
+    "sass-watch": "node-sass -w src/lib/scss/apollo.scss src/lib/css/apollo.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.12.1",
+    "uglifycss": "0.0.27"
+  }
+}

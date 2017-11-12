@@ -1,0 +1,131 @@
+{% extends "_base-empty.twig" %}
+
+{% set errors = {
+'invalidMail': 'Invalid email address',
+'mailInUse': 'This email address is already in use',
+'noPasswordMatch': 'Your two passwords do not match'
+} %}
+
+{% if(flash.registerError) %}
+    {% set error = errors[flash.registerError] %}
+{% endif %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-md-8" style="margin: 50px auto; float: none;">
+                <div class="card">
+                    <div class="card-body" style="padding: 20px;">
+                        <h4 class="card-title">Sign up</h4>
+                        <p class="card-text">
+                            Create your free account for {{ _generic.pageTitle }} by filling out this form.<br/>
+                            {% if _auth.google or _auth.facebook or _auth.github %}
+                            Alternatively, you can use one these services for logging in as well:<br/>
+                        <div class="oAuth">
+                            {% if _auth.google %}
+                                <a class="btn btn-google" href="login/google">Register with google</a>
+                            {% endif %}
+                            {% if _auth.facebook %}
+                                <a class="btn btn-facebook" href="login/facebook">Register with Facebook</a>
+                            {% endif %}
+                            {% if _auth.github %}
+                                <a class="btn btn-github" href="login/github">Register with GitHub</a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        </p>
+                        <form method="post" action="">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" name="firstName" class="form-control"/>
+                                        <small class="form-text text-muted">We use your first and last name to talk to
+                                            you more personally.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="last-name">
+                                        <label>Last Name</label>
+                                        <input type="text" name="lastName" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>E-Mail Address</label>
+                                <input type="email" name="email" class="form-control"/>
+                                <small class="form-text text-muted">Your email will not be made public or shared with
+                                    anyone and we won't put you on any mailing lists.
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Password</label>
+                                <div class="input-group">
+                                    <input id="txtPassword" type="password" name="password" class="form-control"/>
+                                    <span class="input-group-btn">
+                                        <button title="toggle visibility" id="pwVisibility"
+                                                class="btn btn-secondary material-icons">visibility</button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="grpSecondPassword">
+                                <label>Repeat Password</label>
+                                <input type="password" name="repeatPassword" class="form-control"/>
+                            </div>
+
+                            {% if error %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>
+                            {% endif %}
+
+                            <div class="form-group">
+                                <input type="submit" value="Register now" class="btn btn-primary"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <a href="/">Back to the homepage</a>
+            </div>
+        </div>
+    </div>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+            crossorigin="anonymous"></script>
+
+    <script>
+		$('#pwVisibility').click(function (e) {
+			e.preventDefault();
+
+			var $this = $(this),
+				$txtPassword = $('#txtPassword'),
+				$grpSecondPassword = $('#grpSecondPassword');
+
+			if ($txtPassword.attr('type') === 'password') {
+				$this.text('visibility_off');
+				$txtPassword.attr('type', 'text');
+				$grpSecondPassword.hide();
+			} else {
+				$this.text('visibility');
+				$txtPassword.attr('type', 'password');
+				$grpSecondPassword.show();
+			}
+
+			$txtPassword.focus();
+		});
+
+		$('form').on('submit', function () {
+			var $txtPassword = $('#txtPassword'),
+				$grpSecondPassword = $('#grpSecondPassword');
+
+			if ($grpSecondPassword.is(':hidden')) {
+				$grpSecondPassword.find('input').val($txtPassword.val());
+			}
+		});
+    </script>
+{% endblock %}
