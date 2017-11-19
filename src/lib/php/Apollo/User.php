@@ -109,20 +109,20 @@ class User
                 if ($this->id) {
                     $this->dbSync = TRUE;
                 }
-            }
-
-            if (is_integer($arg0)) {
-                $sql = 'SELECT * FROM ' . self::$dbTable . ' WHERE id = ' . intval($arg0) . ' LIMIT 1;';
             } else {
-                $sql = 'SELECT * FROM ' . self::$dbTable . ' WHERE mail = ' . $this->db->escape($arg0) . ' LIMIT 1;';
-            }
+                if (is_integer($arg0)) {
+                    $sql = 'SELECT * FROM ' . self::$dbTable . ' WHERE id = ' . intval($arg0) . ' LIMIT 1;';
+                } else {
+                    $sql = 'SELECT * FROM ' . self::$dbTable . ' WHERE mail = ' . $this->db->escape($arg0) . ' LIMIT 1;';
+                }
 
-            $result = $this->db->queryRow($sql);
-            if (!$result) {
-                throw new \ErrorException('Object not found in database');
+                $result = $this->db->queryRow($sql);
+                if (!$result) {
+                    throw new \ErrorException('Object not found in database');
+                }
+                $this->assignVars($result);
+                $this->dbSync = TRUE;
             }
-            $this->assignVars($result);
-            $this->dbSync = TRUE;
 
             return;
         }
@@ -243,7 +243,8 @@ class User
         return $output;
     }
 
-    function login($password){
+    function login($password)
+    {
         return \Kiss\Utils::hash_password($password, $this->data['password']) === $this->data['password'];
     }
 
@@ -354,7 +355,13 @@ class User
     public static function getBySession()
     {
         if (isset($_SESSION['apolloUser'])) {
-            return new self($_SESSION['apolloUser']);
+            try {
+                $user = new self($_SESSION['apolloUser']);
+            } catch (\ErrorException $e) {
+                return NULL;
+            }
+
+            return $user;
         }
 
         return NULL;
@@ -412,6 +419,46 @@ class User
         $db = requireDatabase();
 
         $sql = 'SELECT * FROM ' . self::$dbTable . ' WHERE oAuthGoogle = ' . $db->escape($userId) . ' LIMIT 1;';
+
+        $result = $db->queryRow($sql);
+
+        if ($result) {
+            return new self($result);
+        }
+
+        return NULL;
+    }
+
+    /**
+     * Returns an account by Github User Id.
+     * @param $userId
+     * @return User|null
+     */
+    public static function getByGithub($userId)
+    {
+        $db = requireDatabase();
+
+        $sql = 'SELECT * FROM ' . self::$dbTable . ' WHERE oAuthGithub = ' . $db->escape($userId) . ' LIMIT 1;';
+
+        $result = $db->queryRow($sql);
+
+        if ($result) {
+            return new self($result);
+        }
+
+        return NULL;
+    }
+
+    /**
+     * Returns an account by Facebook User Id.
+     * @param $userId
+     * @return User|null
+     */
+    public static function getByFacebook($userId)
+    {
+        $db = requireDatabase();
+
+        $sql = 'SELECT * FROM ' . self::$dbTable . ' WHERE oAuthFacebook = ' . $db->escape($userId) . ' LIMIT 1;';
 
         $result = $db->queryRow($sql);
 

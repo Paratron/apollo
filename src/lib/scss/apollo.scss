@@ -111,3 +111,13 @@
     background: darken(#3b5998, 10%);
   }
 }
+
+.btn-github{
+  background: lighten(#24292e, 10%);
+  color: #fff;
+
+  &:hover, &:active{
+    color: #fff;
+    background: #24292e;
+  }
+}
