@@ -120,10 +120,13 @@ if ($setOAuthEndpoint) {
                     $user->lastName = $userdata['family_name'];
 
                     $user->save();
+                    apolloTrigger('userRegisterOAuth', $user);
                 }
 
-
                 $_SESSION['apolloUser'] = $user->id;
+
+                apolloTrigger('userLogin', $user);
+                apolloTrigger('userLoginOAuth', $user);
 
                 $app->redirect($conf['system']['baseURL']);
                 return;

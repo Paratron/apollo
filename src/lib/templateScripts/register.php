@@ -35,6 +35,8 @@ function process(){
 
     $u->save();
 
+    apolloTrigger('userRegisterMail', $u);
+
     if(isset($conf['requireEmailConfirmation']) && $conf['requireEmailConfirmation']){
         $u->sendActivationMail();
         $app->redirect('/preActivation/' . $u->getIdHash());
@@ -42,5 +44,4 @@ function process(){
         $u->setMailAddressConfirmed();
         $app->redirect('/afterActivation/' . $u->getIdHash(TRUE));
     }
-
 }

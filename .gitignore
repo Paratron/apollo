@@ -2,3 +2,4 @@
 node_modules
 .vagrant
 src/lib/config/settings.ini
+*.log

@@ -35,6 +35,7 @@ $view->parserOptions = array(
 );
 //$twig = $view->getInstance();
 
+require 'lib/php/Apollo/TriggerProcessor.php';
 require 'lib/php/Apollo/AutoRouter.php';
 
 $app->run();

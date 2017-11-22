@@ -24,5 +24,9 @@ function process()
     }
 
     $user->enableSession();
+
+    apolloTrigger('userLogin', $user);
+    apolloTrigger('userLoginMail', $user);
+
     $app->redirect('/');
 }
